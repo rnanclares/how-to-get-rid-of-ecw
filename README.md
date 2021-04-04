@@ -15,7 +15,7 @@ Reconocimientos:
 
 ### ¿Por qué no debemos usar ecw?
 - No es formato abierto.
-- Necesita de un SDK privativo para funcionar en sistemas GNU/Linux, Windows o Mac.
+- Necesita de un SDK privativo para que GDAL lo soporte en sistemas GNU/Linux, Windows o Mac.
 - Las versiones de GDAL incluidos en las distribuciones de GNU/Linux no tienen soporte para ecw (u otros formatos privativos) porque no se puede distribuir el SDK bajo licencias de software libre.
 - Desde hace muchos años tenemos alternativas con la compresión JPEG en el formato GeoTIFF en el caso de la fotografía aérea y otros tipos de compresión (con y sin perdida) que pueden utilizarse con imágenes GeoTIFF.
 
