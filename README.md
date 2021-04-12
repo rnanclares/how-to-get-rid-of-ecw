@@ -75,7 +75,7 @@ Tano al usar compresión JPEG como al convertir de ECW a GeoTiff vamos a tener p
 Normalmente vamos a requerir de dos procesos:
 1. Reescalar los valor dentro de la imagen para que este en el rango 1-255 y así podamos usar el 0 como valor nulo.
 2. Utilizar un polígono para recortar la imagen
-3. No reescalar los valores dentro de la imagen y usar una polígono de corte como una máscara interna dentro del geotiff. Esto tiene como inconveniente que no podremos usar pirámides externas. El resultado será un geotiff con 4 bandas (RGBA). 
+3. No reescalar los valores dentro de la imagen y usar una polígono de corte como una máscara interna dentro del geotiff. Esto tiene como inconveniente que no podremos usar pirámides internas. El resultado será un geotiff con 4 bandas (RGBA). 
 
 
 
