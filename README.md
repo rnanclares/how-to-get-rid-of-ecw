@@ -72,9 +72,13 @@ Tano al usar compresión JPEG como al convertir de ECW a GeoTiff vamos a tener p
 3. Tampoco podemos usar el valor 0 como nulo ya que dentro de la imagen ya que es frecuente que dentro de la imagen aparezcan pixels con valores dentro del rango completo de 8 bits (0-255).
 
 ### ¿Cómo podemos arreglarlo?
-Normalmente vamos a requerir de dos procesos:
-1. Reescalar los valor dentro de la imagen para que este en el rango 1-255 y así podamos usar el 0 como valor nulo y después utilizar un polígono para recortar la imagen
-2. No reescalar los valores dentro de la imagen y usar una polígono de corte como una máscara interna dentro del geotiff. Esto tiene como inconveniente que no podremos usar pirámides internas. El resultado será un geotiff con 4 bandas (RGBA). 
+Podemos usar dos estrategias
+#### Máscaras internas
+Usar una polígono de corte como una máscara interna dentro del geotiff. Esto tiene como inconveniente que el tiempo de proceso es bastante elevado (obviamente dependiendo del número de filas y columnas del ráster).
+
+#### Reescalado y recorte
+Reescalar los valor dentro de la imagen para que este en el rango 1-255 y así podamos usar el 0 como valor nulo y después utilizar un polígono para recortar la imagen.
+
 
 
 
