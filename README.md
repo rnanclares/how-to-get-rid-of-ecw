@@ -64,6 +64,21 @@ También en las pirámides:
 
 `gdaladdo -minsize 256 --config COMPRESS_OVERVIEW JPEG --config JPEG_QUALITY 50 --config PHOTOMETRIC_OVERVIEW YCBCR --config INTERLEAVE_OVERVIEW PIXEL -r average nuestro.tif`
 
+## Arreglando los valores nulos
+
+Tano al usar compresión JPEG como al convertir de ECW a GeoTiff vamos a tener problemas con los valores nulos de la imagen:
+1. En la compresión JPEG los valores nulos no son exactos, varían en un rango que puede ser 253, 254 o 255. 
+2. Al transforma de ECW a GeoTiff podemos perder el área definida como valores nulos, a no ser que el ecw tengo una banda alfa (de transparencia) que no es frecuente.
+3. Tampoco podemos usar el valor 0 como nulo ya que dentro de la imagen ya que es frecuente que dentro de la imagen aparezcan pixels con valores dentro del rango completo de 8 bits (0-255).
+
+### ¿Cómo podemos arreglarlo?
+Normalmente vamos a requerir de dos procesos:
+1. Reescalar los valor dentro de la imagen para que este en el rango 1-255 y así podamos usar el 0 como valor nulo.
+2. Utilizar un polígono para recortar la imagen
+3. No reescalar los valores dentro de la imagen y usar una polígono de corte como una máscara interna dentro del geotiff. Esto tiene como inconveniente que no podremos usar pirámides externas. El resultado será un geotiff con 4 bandas (RGBA). 
+
+
+
 
 
 
