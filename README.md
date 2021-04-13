@@ -80,6 +80,17 @@ Tano al usar compresión JPEG como al convertir de ECW a GeoTiff vamos a tener p
 Podemos usar dos estrategias
 #### Máscaras internas
 Usar una polígono de corte como una máscara interna dentro del geotiff. Esto tiene como inconveniente que el tiempo de proceso es bastante elevado (obviamente dependiendo del número de filas y columnas del ráster).
+```
+gdalwarp -multi -wm 8192 -co alpha=yes -dstalpha -cutline cutline.gpkg -of vrt nuestro.ecw nuestro.vrt
+
+gdal_translate -b 1 -b 2 -b 3 -mask 4 -co alpha=no -co PHOTOMETRIC=YCBCR -co JPEG_QUALITY=50 -co COMPRESS=JPEG 
+	-co TILED=YES --config GDAL_TIFF_INTERNAL_MASK YES nuestro.vrt nuestro_comprimido.tif
+
+gdaladdo -minsize 256 -oo NUM_THREADS=ALL_CPUS  --config GDAL_NUM_THREADS ALL_CPUS 
+	--config GDAL_CACHEMAX 2048 --config COMPRESS_OVERVIEW JPEG 
+	--config JPEG_QUALITY 50 --config PHOTOMETRIC_OVERVIEW YCBCR 
+	--config INTERLEAVE_OVERVIEW PIXEL -r average nuestro_comprimido.tif
+```
 
 #### Reescalado y recorte
 Reescalar los valor dentro de la imagen para que este en el rango 1-255 y así podamos usar el 0 como valor nulo y después utilizar un polígono para recortar la imagen.
