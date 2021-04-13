@@ -59,12 +59,15 @@ gdaladdo -minsize 256 --config COMPRESS_OVERVIEW JPEG \
 ```
 
 Con esto podriamos dar el proceso por terminado pero el ratio de compresión no es tan bueno, terminaremos con un tif con el doble de tamaño que el ecw original. Podemos reducir todavía más el tamaño del tif comprimido usando el parámetro de calidad de la compresión JPEG `JPEG_QUALITY=`.
-
-`gdal_translate -co BIGTIFF=IF_NEEDED -co TILED=YES -co COMPRESSION=JPEG -co JPEG_QUALITY=50 -co PHOTOMETRIC=YCBCR nuestro.ecw nuestro.tif`
-
+```
+gdal_translate -co BIGTIFF=IF_NEEDED -co TILED=YES -co COMPRESSION=JPEG
+  -co JPEG_QUALITY=50 -co PHOTOMETRIC=YCBCR nuestro.ecw nuestro.tif`
+```
 También en las pirámides:
 ```
-gdaladdo -minsize 256 --config COMPRESS_OVERVIEW JPEG --config JPEG_QUALITY 50 --config PHOTOMETRIC_OVERVIEW YCBCR --config INTERLEAVE_OVERVIEW PIXEL -r average nuestro.tif
+gdaladdo -minsize 256 --config COMPRESS_OVERVIEW JPEG 
+  --config JPEG_QUALITY 50 --config PHOTOMETRIC_OVERVIEW YCBCR 
+  --config INTERLEAVE_OVERVIEW PIXEL -r average nuestro.tif
 ```
 ## Arreglando los valores nulos
 
