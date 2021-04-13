@@ -61,7 +61,7 @@ gdaladdo -minsize 256 --config COMPRESS_OVERVIEW JPEG \
 Con esto podriamos dar el proceso por terminado pero el ratio de compresión no es tan bueno, terminaremos con un tif con el doble de tamaño que el ecw original. Podemos reducir todavía más el tamaño del tif comprimido usando el parámetro de calidad de la compresión JPEG `JPEG_QUALITY=`.
 ```
 gdal_translate -co BIGTIFF=IF_NEEDED -co TILED=YES -co COMPRESSION=JPEG
-  -co JPEG_QUALITY=50 -co PHOTOMETRIC=YCBCR nuestro.ecw nuestro.tif`
+  -co JPEG_QUALITY=50 -co PHOTOMETRIC=YCBCR nuestro.ecw nuestro.tif
 ```
 También en las pirámides:
 ```
@@ -77,7 +77,6 @@ Tano al usar compresión JPEG como al convertir de ECW a GeoTiff vamos a tener p
 3. Tampoco podemos usar el valor 0 como nulo ya que dentro de la imagen ya que es frecuente que dentro de la imagen aparezcan pixels con valores dentro del rango completo de 8 bits (0-255).
 
 ### ¿Cómo podemos arreglarlo?
-Podemos usar dos estrategias
 #### Máscaras internas
 Usar una polígono de corte como una máscara interna dentro del geotiff. Esto tiene como inconveniente que el tiempo de proceso es bastante elevado (obviamente dependiendo del número de filas y columnas del ráster).
 ```
@@ -91,9 +90,6 @@ gdaladdo -minsize 256 -oo NUM_THREADS=ALL_CPUS  --config GDAL_NUM_THREADS ALL_CP
 	--config JPEG_QUALITY 50 --config PHOTOMETRIC_OVERVIEW YCBCR 
 	--config INTERLEAVE_OVERVIEW PIXEL -r average nuestro_comprimido.tif
 ```
-
-#### Reescalado y recorte
-Reescalar los valor dentro de la imagen para que este en el rango 1-255 y así podamos usar el 0 como valor nulo y después utilizar un polígono para recortar la imagen.
 
 
 
