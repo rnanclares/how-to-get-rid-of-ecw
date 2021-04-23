@@ -12,7 +12,7 @@ Reconocimientos:
 * Luigi Pirelli - [Docker-gdalecw](https://github.com/luipir/docker-gdalecw)[1]
 * Keith Jenkins - [TIFF compression options](https://gist.github.com/kgjenkins/877ff0bf7aef20f87895a6e93d61fb43)
 * koko Alberti - [Guide to GeoTIFF compression and optimization with GDAL](https://kokoalberti.com/articles/geotiff-compression-optimization-guide/)
-* Gdal contributors - [GDAL](https://github.com/osgeo/gdal)
+* GDAL contributors - [GDAL](https://github.com/osgeo/gdal)
 
 ### ¿Por qué no debemos usar ecw?
 - No es formato abierto.
