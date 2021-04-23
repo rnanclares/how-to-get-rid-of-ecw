@@ -50,7 +50,9 @@ Ahora basta con que nos cambiemos al directorio con nuestros datos y empecemos a
 
 `$ cd /home/datafolder/`
 
-`gdal_translate -co BIGTIFF=IF_NEEDED -co TILED=YES -co COMPRESS=JPEG -co PHOTOMETRIC=YCBCR nuestro.ecw nuestro.tif`
+```
+gdal_translate -co BIGTIFF=IF_NEEDED -co TILED=YES -co COMPRESS=JPEG -co PHOTOMETRIC=YCBCR nuestro.ecw nuestro.tif
+```
 
 Para mejorar la velocidad de carga de nuestro tiff tenemos que añadir pirámides (overviews) ya sean internas o externas (en este caso vamos a usar internas).
 ```
